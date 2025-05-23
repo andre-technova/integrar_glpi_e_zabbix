@@ -1,4 +1,4 @@
-Integração GLPi ↔ Zabbix: automação de criação e atualização de tickets via webhook
+Integração GLPI ↔ Zabbix: automação de criação e atualização de tickets via webhook
 
 # Integração GLPI e Zabbix
 
