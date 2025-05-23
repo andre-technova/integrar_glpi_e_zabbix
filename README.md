@@ -25,7 +25,7 @@ Este repositório contém scripts e arquivos de configuração que permitem atua
 
    ```bash
    git clone https://github.com/andre-technova/integrar_glpi_e_zabbix.git
-   cd GLPI-zabbix-integration
+   cd glpi-zabbix-integration
    ```
 2. Após subir ambos os serviços, acesse:
 
@@ -94,7 +94,7 @@ This repository contains scripts and configuration files that enable updating pr
 
    ```bash
    git clone https://github.com/andre-technova/integrar_glpi_e_zabbix.git
-   cd GLPI-zabbix-integration
+   cd glpi-zabbix-integration
    ```
 2. Once both services are up, access:
 
@@ -163,7 +163,7 @@ Este repositorio contiene scripts y archivos de configuración que permiten actu
 
    ```bash
    git clone https://github.com/andre-technova/integrar_glpi_e_zabbix.git
-   cd GLPI-zabbix-integration
+   cd glpi-zabbix-integration
    ```
 2. Una vez en funcionamiento, accede:
 
