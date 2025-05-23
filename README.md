@@ -1,2 +1,204 @@
-# integrar_glpi_e_zabbix
 Integração GLPi ↔ Zabbix: automação de criação e atualização de tickets via webhook
+
+# Integração GLPI e Zabbix
+
+## Descrição do Repositório
+
+Este repositório contém scripts e arquivos de configuração que permitem atualizar tickets no GLPI sempre que o Zabbix dispara um evento.
+
+## Funcionalidades
+
+* **Criação Automática de Tickets**: Quando um evento é acionado no Zabbix, um novo ticket é criado no GLPI.
+* **Atualização de Tickets**: Eventos como resolução de problema ou alterações de status são refletidos automaticamente no ticket correspondente no GLPI.
+* **Autenticação com App-Token e User-Token**: Utiliza tanto o App-Token quanto o User-Token para comunicação segura via API com o GLPI.
+
+## Estrutura do Projeto
+
+* **docker-compose.yml**: Arquivo de configuração para executar seu ambiente GLPI via Docker.
+* **gpli\_zabbix\_media\_script.js**: Arquivo JavaScript usado para automatizar a criação e atualização de tickets no GLPI com base em eventos do Zabbix (Webhook).
+
+## Configuração e Uso
+
+### Passo 1: Configuração do Docker
+
+1. Clone este repositório:
+
+   ```bash
+   git clone https://github.com/andre-technova/integrar_glpi_e_zabbix.git
+   cd GLPI-zabbix-integration
+   ```
+2. Após subir ambos os serviços, acesse:
+
+   * Zabbix: [http://localhost:8080](http://localhost:8080)
+   * GLPI: [http://localhost:30080](http://localhost:30080)
+
+### Passo 2: Script de Mídia do Zabbix
+
+1. Copie o conteúdo de `gpli_zabbix_media_script.js` para a mídia padrão do GLPI.
+2. Para instruções adicionais sobre configuração da API do GLPI, acesse:
+   [`Zabbix GLPI GIT`](https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/templates/media/GLPI)
+
+#### Configurar parâmetros no Zabbix
+
+* `GLPI_url`: A URL da sua instância GLPI.
+* `GLPI_token`: O token de usuário para autenticar no GLPI.
+* `GLPI_app_token`: O token de aplicação para autenticar solicitações da API.
+
+## Visão Geral do Script
+
+### gpli\_zabbix\_media\_script.js
+
+Este script é responsável por interagir com a API do GLPI com base em eventos do Zabbix, incluindo o uso do `app_token`.
+
+## Funcionalidades Principais
+
+* **Autenticação**: Utiliza tanto `user_token` quanto `app_token` para comunicar-se de forma segura com a API do GLPI.
+* **Criação de Ticket**: Quando um novo problema é detectado no Zabbix, o script cria um ticket no GLPI com detalhes relevantes, como urgência e descrição.
+* **Atualização de Ticket**: Quando um problema é resolvido ou seu status muda no Zabbix, o script atualiza o ticket correspondente no GLPI.
+
+### Trecho de Código para Autenticação
+
+```javascript
+request.addHeader('Authorization: user_token ' + token);
+request.addHeader('App-Token: ' + app_token);
+```
+
+Este trecho mostra como adicionar cabeçalhos de autenticação no script JavaScript.
+
+---
+
+## EN
+
+# GLPI and Zabbix Integration
+
+## Repository Description
+
+This repository contains scripts and configuration files that enable updating problem tickets in GLPI whenever Zabbix triggers an event.
+
+## Features
+
+* **Automatic Ticket Creation**: When an event is triggered in Zabbix, a new problem ticket is created in GLPI.
+* **Ticket Updates**: Events such as problem resolution or status changes are automatically reflected in the corresponding GLPI ticket.
+* **App-Token and User-Token Authentication**: Uses both the `App-Token` and `User-Token` for secure API communication with GLPI.
+
+## Project Structure
+
+* **docker-compose.yml**: A configuration file to run your GLPI test environment via Docker.
+* **gpli\_zabbix\_media\_script.js**: The JavaScript file used to automate ticket creation and updates in GLPI based on Zabbix events (Webhook).
+
+## Setup and Usage
+
+### Step 1: Docker Setup
+
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/andre-technova/integrar_glpi_e_zabbix.git
+   cd GLPI-zabbix-integration
+   ```
+2. Once both services are up, access:
+
+   * Zabbix: [http://localhost:8080](http://localhost:8080)
+   * GLPI: [http://localhost:30080](http://localhost:30080)
+
+### Step 2: Zabbix Media Script
+
+1. Copy the contents of `gpli_zabbix_media_script.js` to your standard GLPI media.
+2. For further instruction on GLPI API configuration, visit:
+   [`Zabbix GLPI GIT`](https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/templates/media/GLPI)
+
+#### Configure parameters in Zabbix
+
+* `GLPI_url`: The URL of your GLPI instance.
+* `GLPI_token`: The user token for authenticating with GLPI.
+* `GLPI_app_token`: The application token for authenticating API requests.
+
+## Script Overview
+
+### gpli\_zabbix\_media\_script.js
+
+This script is responsible for interacting with the GLPI API based on Zabbix events, including the addition of `app_token` usage.
+
+## Key Functionalities
+
+* **Authentication**: Uses both `user_token` and `app_token` to securely communicate with the GLPI API.
+* **Ticket Creation**: When a new problem is detected in Zabbix, the script creates a ticket in GLPI with relevant details like urgency and description.
+* **Ticket Update**: When an issue is resolved or its status changes in Zabbix, the script updates the corresponding ticket in GLPI.
+
+### Authentication Code Snippet
+
+```javascript
+request.addHeader('Authorization: user_token ' + token);
+request.addHeader('App-Token: ' + app_token);
+```
+
+This snippet shows how to add authentication headers in the JavaScript script.
+
+---
+
+## ES
+
+# Integración GLPI y Zabbix
+
+## Descripción del Repositorio
+
+Este repositorio contiene scripts y archivos de configuración que permiten actualizar tickets de problema en GLPI cada vez que Zabbix desencadena un evento.
+
+## Características
+
+* **Creación Automática de Tickets**: Cuando se desencadena un evento en Zabbix, se crea un nuevo ticket de problema en GLPI.
+* **Actualización de Tickets**: Eventos como resolución de problemas o cambios de estado se reflejan automáticamente en el ticket correspondiente en GLPI.
+* **Autenticación con App-Token y User-Token**: Utiliza tanto el `App-Token` como el `User-Token` para comunicación segura por API con GLPI.
+
+## Estructura del Proyecto
+
+* **docker-compose.yml**: Archivo de configuración para ejecutar tu entorno de pruebas GLPI mediante Docker.
+* **gpli\_zabbix\_media\_script.js**: Archivo JavaScript utilizado para automatizar la creación y actualización de tickets en GLPI según eventos de Zabbix (Webhook).
+
+## Configuración y Uso
+
+### Paso 1: Configuración de Docker
+
+1. Clona este repositorio:
+
+   ```bash
+   git clone https://github.com/andre-technova/integrar_glpi_e_zabbix.git
+   cd GLPI-zabbix-integration
+   ```
+2. Una vez en funcionamiento, accede:
+
+   * Zabbix: [http://localhost:8080](http://localhost:8080)
+   * GLPI: [http://localhost:30080](http://localhost:30080)
+
+### Paso 2: Script de Medios de Zabbix
+
+1. Copia el contenido de `gpli_zabbix_media_script.js` a los medios estándar de GLPI.
+2. Para más instrucciones sobre la configuración de la API de GLPI, visita:
+   [`Zabbix GLPI GIT`](https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/templates/media/GLPI)
+
+#### Configurar parámetros en Zabbix
+
+* `GLPI_url`: La URL de tu instancia de GLPI.
+* `GLPI_token`: El token de usuario para autenticar en GLPI.
+* `GLPI_app_token`: El token de aplicación para autenticar las solicitudes de API.
+
+## Visión General del Script
+
+### gpli\_zabbix\_media\_script.js
+
+Este script es responsable de interactuar con la API de GLPI según eventos de Zabbix, incluida la adición del uso de `app_token`.
+
+## Funcionalidades Principales
+
+* **Autenticación**: Utiliza tanto `user_token` como `app_token` para comunicarse de forma segura con la API de GLPI.
+* **Creación de Ticket**: Cuando se detecta un nuevo problema en Zabbix, el script crea un ticket en GLPI con detalles relevantes, como urgencia y descripción.
+* **Actualización de Ticket**: Cuando un problema se resuelve o cambia de estado en Zabbix, el script actualiza el ticket correspondiente en GLPI.
+
+### Fragmento de Código para Autenticación
+
+```javascript
+request.addHeader('Authorization: user_token ' + token);
+request.addHeader('App-Token: ' + app_token);
+```
+
+Este fragmento muestra cómo agregar encabezados de autenticación en el script JavaScript.
